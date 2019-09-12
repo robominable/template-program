@@ -81,20 +81,30 @@ void usercontrol( void ) {
     //MECH DRIVES
     int creep;
         creep = float(0.05);
-        if (Controller.Axis3.position(vex::percentUnits::pct) > creep || Controller.Axis3.position(vex::percentUnits::pct) < -creep){
-            FLdrive.spin(vex::directionType::rev,(Controller.Axis3.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+        if (Controller.Axis3.position(vex::percentUnits::pct) > creep || Controller.Axis3.position(vex::percentUnits::pct) < -creep || Controller.Axis4.position(vex::percentUnits::pct) > creep || Controller.Axis4.position(vex::percentUnits::pct) < -creep){
+            FLdrive.spin(vex::directionType::fwd,(Controller.Axis3.position(vex::percentUnits::pct) + Controller.Axis4.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
         }
           else{
-            Ldrive.stop();
+            FLdrive.stop();
           }
-        if (Controller.Axis2.position(vex::percentUnits::pct) > creep || Controller.Axis2.position(vex::percentUnits::pct) < -creep){
-            Rdrive.spin(vex::directionType::rev,-(Controller.Axis2.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
-            R2drive.spin(vex::directionType::rev,-(Controller.Axis2.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+        if (Controller.Axis2.position(vex::percentUnits::pct) > creep || Controller.Axis2.position(vex::percentUnits::pct) < -creep || Controller.Axis1.position(vex::percentUnits::pct) > creep || Controller.Axis1.position(vex::percentUnits::pct) < -creep){
+            BLdrive.spin(vex::directionType::fwd,(Controller.Axis2.position(vex::percentUnits::pct) - Controller.Axis1.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
         }
-            else{
-                Rdrive.stop();
-                R2drive.stop();
-            }
+          else{
+            BLdrive.stop();
+          }
+        if (Controller.Axis3.position(vex::percentUnits::pct) > creep || Controller.Axis3.position(vex::percentUnits::pct) < -creep || Controller.Axis4.position(vex::percentUnits::pct) > creep || Controller.Axis4.position(vex::percentUnits::pct) < -creep){
+            FRdrive.spin(vex::directionType::fwd,(Controller.Axis3.position(vex::percentUnits::pct) - Controller.Axis4.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+        }
+          else{
+            FRdrive.stop();
+          }
+        if (Controller.Axis2.position(vex::percentUnits::pct) > creep || Controller.Axis2.position(vex::percentUnits::pct) < -creep || Controller.Axis1.position(vex::percentUnits::pct) > creep || Controller.Axis1.position(vex::percentUnits::pct) < -creep){
+            BRdrive.spin(vex::directionType::fwd,(Controller.Axis2.position(vex::percentUnits::pct) + Controller.Axis1.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+        }
+          else{
+            BRdrive.stop();
+          }
 
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to 
