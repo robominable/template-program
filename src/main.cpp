@@ -136,6 +136,29 @@ void usercontrol( void ) {
             BRdrive.stop();
           }
           */
+
+    //4 WHEEL LINEAR DRIVE 
+    /*
+    int creep;
+        creep = float(0.05);
+        if (Controller.Axis3.position(vex::percentUnits::pct) > creep || Controller.Axis3.position(vex::percentUnits::pct) < -creep){
+            FLdrive.spin(vex::directionType::fwd,(Controller.Axis3.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+            BLdrive.spin(vex::directionType::fwd,(Controller.Axis3.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+        }
+            else{
+                FLdrive.stop();
+                BLdrive.stop();
+            }
+        if (Controller.Axis2.position(vex::percentUnits::pct) > creep || Controller.Axis2.position(vex::percentUnits::pct) < -creep){
+            FRdrive.spin(vex::directionType::fwd,(Controller.Axis2.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+            BRdrive.spin(vex::directionType::fwd,(Controller.Axis2.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+        }
+            else{
+                FRdrive.stop();
+                BRdrive.stop();
+              }
+      */
+      
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to 
     // update your motors, etc.
