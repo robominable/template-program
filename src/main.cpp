@@ -79,7 +79,7 @@ void usercontrol( void ) {
     // values based on feedback from the joysticks.
 
     //MECH DRIVES
-    int creep;
+    /*int creep;
         creep = float(0.05);
         if (Controller.Axis3.position(vex::percentUnits::pct) > creep || Controller.Axis3.position(vex::percentUnits::pct) < -creep || Controller.Axis4.position(vex::percentUnits::pct) > creep || Controller.Axis4.position(vex::percentUnits::pct) < -creep){
             FLdrive.spin(vex::directionType::fwd,(Controller.Axis3.position(vex::percentUnits::pct) + Controller.Axis4.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
@@ -105,7 +105,37 @@ void usercontrol( void ) {
           else{
             BRdrive.stop();
           }
+      */
 
+      //XDRIVE
+      /*
+      int creep;
+        creep = float(0.05);
+        if (Controller.Axis3.position(vex::percentUnits::pct) > creep || Controller.Axis3.position(vex::percentUnits::pct) < -creep || Controller.Axis4.position(vex::percentUnits::pct) > creep || Controller.Axis4.position(vex::percentUnits::pct) < -creep){
+            FLdrive.spin(vex::directionType::fwd,(Controller.Axis3.position(vex::percentUnits::pct) + Controller.Axis4.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+        }
+          else{
+            FLdrive.stop();
+          }
+        if (Controller.Axis3.position(vex::percentUnits::pct) > creep || Controller.Axis3.position(vex::percentUnits::pct) < -creep || Controller.Axis1.position(vex::percentUnits::pct) > creep || Controller.Axis1.position(vex::percentUnits::pct) < -creep){
+            BLdrive.spin(vex::directionType::fwd,(Controller.Axis3.position(vex::percentUnits::pct) - Controller.Axis1.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+        }
+          else{
+            BLdrive.stop();
+          }
+        if (Controller.Axis2.position(vex::percentUnits::pct) > creep || Controller.Axis2.position(vex::percentUnits::pct) < -creep || Controller.Axis4.position(vex::percentUnits::pct) > creep || Controller.Axis4.position(vex::percentUnits::pct) < -creep){
+            FRdrive.spin(vex::directionType::fwd,(Controller.Axis2.position(vex::percentUnits::pct) - Controller.Axis4.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+        }
+          else{
+            FRdrive.stop();
+          }
+        if (Controller.Axis2.position(vex::percentUnits::pct) > creep || Controller.Axis2.position(vex::percentUnits::pct) < -creep || Controller.Axis1.position(vex::percentUnits::pct) > creep || Controller.Axis1.position(vex::percentUnits::pct) < -creep){
+            BRdrive.spin(vex::directionType::fwd,(Controller.Axis2.position(vex::percentUnits::pct) + Controller.Axis1.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+        }
+          else{
+            BRdrive.stop();
+          }
+          */
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to 
     // update your motors, etc.
