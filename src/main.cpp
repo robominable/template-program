@@ -10,9 +10,20 @@
 /*    Description:  Template program                                          */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
+
+
 #include "vex.h"
+#include "visionSensor.h"
 
 using namespace vex;
+
+//REMOVE THE //  ON THE LINE WITH YOUR TYPE  OF DRIVE (e.g. if you have an xDrive remove the // on line 24)
+
+//#DEFINE linearDrive
+//#DEFINE mechDrive
+//#DEFINE xDrive
+
+
 
 // A global instance of vex::brain used for printing to the V5 brain screen
 vex::brain       Brain;
@@ -79,7 +90,8 @@ void usercontrol( void ) {
     // values based on feedback from the joysticks.
 
     //MECH DRIVES
-    /*int creep;
+    #ifdef mechDrive
+    int creep;
         creep = float(0.05);
         if (Controller.Axis3.position(vex::percentUnits::pct) > creep || Controller.Axis3.position(vex::percentUnits::pct) < -creep || Controller.Axis4.position(vex::percentUnits::pct) > creep || Controller.Axis4.position(vex::percentUnits::pct) < -creep){
             FLdrive.spin(vex::directionType::fwd,(Controller.Axis3.position(vex::percentUnits::pct) + Controller.Axis4.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
@@ -105,10 +117,10 @@ void usercontrol( void ) {
           else{
             BRdrive.stop();
           }
-      */
+      #endif
 
       //XDRIVE
-      /*
+      #ifdef xDrive
       int creep;
         creep = float(0.05);
         if (Controller.Axis3.position(vex::percentUnits::pct) > creep || Controller.Axis3.position(vex::percentUnits::pct) < -creep || Controller.Axis4.position(vex::percentUnits::pct) > creep || Controller.Axis4.position(vex::percentUnits::pct) < -creep){
@@ -135,10 +147,10 @@ void usercontrol( void ) {
           else{
             BRdrive.stop();
           }
-          */
+        #endif 
 
     //4 WHEEL LINEAR DRIVE 
-    /*
+    #ifdef linearDrive
     int creep;
         creep = float(0.05);
         if (Controller.Axis3.position(vex::percentUnits::pct) > creep || Controller.Axis3.position(vex::percentUnits::pct) < -creep){
@@ -157,7 +169,7 @@ void usercontrol( void ) {
                 FRdrive.stop();
                 BRdrive.stop();
               }
-      */
+      #endif
       
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to 
