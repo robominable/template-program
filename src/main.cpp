@@ -16,10 +16,11 @@ using namespace vex;
 
 // A global instance of vex::brain used for printing to the V5 brain screen
 vex::brain       Brain;
-vex::motor leftFrontDrive = vex::motor(PORT1,vex::gearSetting::ratio18_1,false); 
-vex::motor rightFrontDrive = vex::motor(PORT2,vex::gearSetting::ratio18_1,false);
-vex::motor leftBackDrive = vex::motor(PORT3,vex::gearSetting::ratio18_1,false);
-vex::motor rightBackDrive = vex::motor(PORT4,vex::gearSetting::ratio18_1,false);
+vex::controller Controller = vex::controller(vex::controllerType::primary);
+vex::motor FLdrive = vex::motor(PORT1,vex::gearSetting::ratio18_1,false); 
+vex::motor FRdrive = vex::motor(PORT2,vex::gearSetting::ratio18_1,false);
+vex::motor BLdrive = vex::motor(PORT3,vex::gearSetting::ratio18_1,false);
+vex::motor BRdrive = vex::motor(PORT4,vex::gearSetting::ratio18_1,false);
 
 // A global instance of vex::competition
 vex::competition Competition;
@@ -77,11 +78,29 @@ void usercontrol( void ) {
     // Each time through the loop your program should update motor + servo 
     // values based on feedback from the joysticks.
 
+    //MECH DRIVES
+    int creep;
+        creep = float(0.05);
+        if (Controller.Axis3.position(vex::percentUnits::pct) > creep || Controller.Axis3.position(vex::percentUnits::pct) < -creep){
+            FLdrive.spin(vex::directionType::rev,(Controller.Axis3.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+        }
+          else{
+            Ldrive.stop();
+          }
+        if (Controller.Axis2.position(vex::percentUnits::pct) > creep || Controller.Axis2.position(vex::percentUnits::pct) < -creep){
+            Rdrive.spin(vex::directionType::rev,-(Controller.Axis2.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+            R2drive.spin(vex::directionType::rev,-(Controller.Axis2.position(vex::percentUnits::pct)),vex::velocityUnits::pct);
+        }
+            else{
+                Rdrive.stop();
+                R2drive.stop();
+            }
+
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to 
     // update your motors, etc.
     // ........................................................................
-    
+
  
     vex::task::sleep(20); //Sleep the task for a short amount of time to prevent wasted resources. 
   }
