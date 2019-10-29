@@ -1,3 +1,29 @@
+// To complete the VEXcode V5 Text project upgrade process, please follow the
+// steps below.
+// 
+// 1. You can use the Robot Configuration window to recreate your V5 devices
+//   - including any motors, sensors, 3-wire devices, and controllers.
+// 
+// 2. All previous code located in main.cpp has now been commented out. You
+//   will need to migrate this code to the new "int main" structure created
+//   below and keep in mind any new device names you may have set from the
+//   Robot Configuration window. 
+// 
+// If you would like to go back to your original project, a complete backup
+// of your original (pre-upgraded) project was created in a backup folder
+// inside of this project's folder.
+
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// ---- END VEXCODE CONFIGURED DEVICES ----
+
+#include "vex.h"
+
+using namespace vex;
+
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// ---- END VEXCODE CONFIGURED DEVICES ----
 /*
       READ THE VEXCODE TUTORIAL IF YOU HAVE ANY QUESTIONS
 */
@@ -6,12 +32,13 @@
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
 /*    Author:       Todd Rylaarsdam                                           */
+/*    Co-Author:    Winston Chen                                              */
 /*    Created:      Thu Sep 12 2019                                           */
 /*    Description:  Template program                                          */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 
-
+ 
 #include "vex.h"
 #include "visionSensor.h"
 
@@ -19,7 +46,7 @@ using namespace vex;
 
 //REMOVE THE "//""  ON THE LINE WITH YOUR TYPE  OF DRIVE (e.g. if you have an xDrive remove the // on line 24)
 
-//#define linearDrive
+#define linearDrive
 //#define mechDrive
 //#define xDrive
 
@@ -32,6 +59,9 @@ vex::motor FLdrive = vex::motor(PORT1,vex::gearSetting::ratio18_1,false);
 vex::motor FRdrive = vex::motor(PORT2,vex::gearSetting::ratio18_1,false);
 vex::motor BLdrive = vex::motor(PORT3,vex::gearSetting::ratio18_1,false);
 vex::motor BRdrive = vex::motor(PORT4,vex::gearSetting::ratio18_1,false);
+vex::motor Claw = vex::motor(PORT5,vex::gearSetting::ratio18_1,false);
+vex::motor LArm = vex::motor(PORT6,vex::gearSetting::ratio18_1,false);
+vex::motor RArm = vex::motor(PORT7,vex::gearSetting::ratio18_1,false);
 
 // A global instance of vex::competition
 vex::competition Competition;
@@ -54,7 +84,7 @@ void pre_auton( void ) {
   // Example: clearing encoders, setting servo positions, ...
   
 }
-
+ 
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                              Autonomous Task                              */
@@ -69,7 +99,15 @@ void autonomous( void ) {
   // ..........................................................................
   // Insert autonomous user code here.
   // ..........................................................................
-
+  FLdrive.spin(directionType::fwd, 100, velocityUnits::pct);
+  FRdrive.spin(directionType::fwd, 100, velocityUnits::pct);
+  BLdrive.spin(directionType::fwd, 100, velocityUnits::pct);
+  BRdrive.spin(directionType::fwd, 100, velocityUnits::pct);
+  task::sleep(1000);
+  FLdrive.stop();
+  FRdrive.stop();
+  BLdrive.stop();
+  BRdrive.stop();
 }
 
 /*---------------------------------------------------------------------------*/
@@ -169,6 +207,34 @@ void usercontrol( void ) {
                 FRdrive.stop();
                 BRdrive.stop();
               }
+        if (Controller.ButtonR1.pressing()){
+            LArm.spin(vex::directionType::fwd);
+            RArm.spin(vex::directionType::fwd);
+        }
+            else{
+                LArm.stop();
+                RArm.stop();
+            }
+        if(Controller.ButtonR2.pressing()){
+            LArm.spin(vex::directionType::rev);
+            RArm.spin(vex::directionType::rev);
+        }
+            else{
+                LArm.stop();
+                RArm.stop();
+            }
+        if(Controller.ButtonB.pressing()){
+            Claw.spin(vex::directionType::fwd);
+        }    
+            else{
+                Claw.stop();
+            }
+        if(Controller.ButtonX.pressing()){
+            Claw.spin(vex::directionType::rev);
+        }
+            else{
+                Claw.stop();
+            }
       #endif
       
     // ........................................................................
