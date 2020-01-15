@@ -1,4 +1,4 @@
-d// To complete the VEXcode V5 Text project upgrade process, please follow the
+// To complete the VEXcode V5 Text project upgrade process, please follow the
 // steps below.
 // 
 // 1. You can use the Robot Configuration window to recreate your V5 devices
@@ -59,7 +59,6 @@ vex::motor FLdrive = vex::motor(PORT1,vex::gearSetting::ratio18_1,false);
 vex::motor FRdrive = vex::motor(PORT2,vex::gearSetting::ratio18_1,false);
 vex::motor BLdrive = vex::motor(PORT3,vex::gearSetting::ratio18_1,false);
 vex::motor BRdrive = vex::motor(PORT4,vex::gearSetting::ratio18_1,false);
-
 // A global instance of vex::competition
 vex::competition Competition;
 
@@ -195,7 +194,6 @@ void usercontrol( void ) {
                 FRdrive.stop();
                 BRdrive.stop();
               }
-       }
       #endif
       
     // ........................................................................
@@ -205,6 +203,7 @@ void usercontrol( void ) {
 
  
     vex::task::sleep(20); //Sleep the task for a short amount of time to prevent wasted resources. 
+  }
 }
 
 //
