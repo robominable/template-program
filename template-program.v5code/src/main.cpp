@@ -58,9 +58,6 @@ vex::motor FLdrive = vex::motor(PORT1,vex::gearSetting::ratio18_1,false);
 vex::motor FRdrive = vex::motor(PORT2,vex::gearSetting::ratio18_1,false);
 vex::motor BLdrive = vex::motor(PORT3,vex::gearSetting::ratio18_1,false);
 vex::motor BRdrive = vex::motor(PORT4,vex::gearSetting::ratio18_1,false);
-vex::motor Claw = vex::motor(PORT5,vex::gearSetting::ratio18_1,false);
-vex::motor LArm = vex::motor(PORT6,vex::gearSetting::ratio18_1,false);
-vex::motor RArm = vex::motor(PORT7,vex::gearSetting::ratio18_1,false);
 
 // A global instance of vex::competition
 vex::competition Competition;
@@ -98,83 +95,6 @@ void autonomous( void ) {
   // ..........................................................................
   // Insert autonomous user code here.
   // ..........................................................................
-  Claw.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  task::sleep(150);
-  Claw.stop();
-  LArm.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  RArm.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  task::sleep(50);
-  FLdrive.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  FRdrive.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  BLdrive.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  BRdrive.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  task::sleep(1000);
-  FLdrive.stop();
-  FRdrive.stop();
-  BLdrive.stop();
-  BRdrive.stop();
-  FLdrive.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  FRdrive.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  BLdrive.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  BRdrive.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  task::sleep(350);
-  FLdrive.stop();
-  FRdrive.stop();
-  BLdrive.stop();
-  BRdrive.stop();
-  LArm.stop();
-  RArm.stop();
-  LArm.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  RArm.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  task::sleep(500);
-  LArm.stop();
-  RArm.stop();
-  Claw.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  task::sleep(150);
-  Claw.stop();
-  LArm.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  RArm.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  task::sleep(350);
-  LArm.stop();
-  RArm.stop();
-  Claw.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  task::sleep(150);
-  Claw.stop();
-  FLdrive.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  FRdrive.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  BLdrive.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  BRdrive.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  task::sleep(750);
-  FLdrive.stop();
-  FRdrive.stop();
-  BLdrive.stop();
-  BRdrive.stop();
-  FLdrive.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  FRdrive.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  BLdrive.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  BRdrive.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  task::sleep(500);
-  FLdrive.stop();
-  FRdrive.stop();
-  BLdrive.stop();
-  BRdrive.stop();
-  LArm.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  RArm.spin(vex::directionType::fwd, 100, vex::velocityUnits::pct);
-  task::sleep(150);
-  LArm.stop();
-  RArm.stop();
-  Claw.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  task::sleep(150);
-  Claw.stop();
-  FLdrive.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  FRdrive.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  BLdrive.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  BRdrive.spin(vex::directionType::rev, 100, vex::velocityUnits::pct);
-  task::sleep(50);
-  FLdrive.stop();
-  FRdrive.stop();
-  BLdrive.stop();
-  BRdrive.stop();
   }
 
 /*---------------------------------------------------------------------------*/
@@ -273,37 +193,9 @@ void usercontrol( void ) {
             else{
                 FRdrive.stop();
                 BRdrive.stop();
-              }
-        if (Controller.ButtonR1.pressing()){
-            LArm.spin(vex::directionType::fwd);
-            RArm.spin(vex::directionType::fwd);
-        }
-            else{
-                LArm.stop();
-                RArm.stop();
-            }
-        if(Controller.ButtonR2.pressing()){
-            LArm.spin(vex::directionType::rev);
-            RArm.spin(vex::directionType::rev);
-        }
-            else{
-                LArm.stop();
-                RArm.stop();
-            }
-        if(Controller.ButtonB.pressing()){
-            Claw.spin(vex::directionType::fwd);
-        }    
-            else{
-                Claw.stop();
-            }
-        if(Controller.ButtonX.pressing()){
-            Claw.spin(vex::directionType::rev);
-        }
-            else{
-                Claw.stop();
             }
       #endif
-      
+            
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to 
     // update your motors, etc.
@@ -312,7 +204,6 @@ void usercontrol( void ) {
  
     vex::task::sleep(20); //Sleep the task for a short amount of time to prevent wasted resources. 
   }
-}
 
 //
 // Main will set up the competition functions and callbacks.
@@ -329,5 +220,4 @@ int main() {
     while(1) {
       vex::task::sleep(100);//Sleep the task for a short amount of time to prevent wasted resources.
     }    
-       
 }
