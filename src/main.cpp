@@ -274,7 +274,14 @@ void usercontrol( void ) {
                 FRdrive.stop();
                 BRdrive.stop();
               }
-        if (Controller.ButtonR1.pressing()){
+        
+      #endif
+      
+    // ........................................................................
+    // Insert user code here. This is where you use the joystick values to 
+    // update your motors, etc.
+    // ........................................................................
+      if (Controller.ButtonR1.pressing()){
             LArm.spin(vex::directionType::fwd);
             RArm.spin(vex::directionType::fwd);
         }
@@ -302,13 +309,6 @@ void usercontrol( void ) {
             else{
                 Claw.stop();
             }
-      #endif
-      
-    // ........................................................................
-    // Insert user code here. This is where you use the joystick values to 
-    // update your motors, etc.
-    // ........................................................................
-
  
     vex::task::sleep(20); //Sleep the task for a short amount of time to prevent wasted resources. 
   }
